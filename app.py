@@ -15,10 +15,10 @@ def index():
 
 @app.route("/getData/")
 def getData():
-	
+
 	client = pyorient.OrientDB("localhost", 2424)
-	session_id = client.connect("root", "password")
-	db_name = "property_test"
+	session_id = client.connect("root", "xiaozhuasha")
+	db_name = "soufun"
 	db_username = "admin"
 	db_password = "admin"
 
@@ -56,6 +56,7 @@ def getData():
 		output["features"].append(feature)
 
 	return json.dumps(output)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True,threaded=True)
