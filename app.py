@@ -4,6 +4,7 @@ from flask import render_template
 import json
 import time
 import sys
+import random
 
 import pyorient
 
@@ -17,8 +18,8 @@ def index():
 def getData():
 	
 	client = pyorient.OrientDB("localhost", 2424)
-	session_id = client.connect("root", "password")
-	db_name = "property_test"
+	session_id = client.connect("root", "xiaozhuasha")
+	db_name = "soufun"
 	db_username = "admin"
 	db_password = "admin"
 
@@ -38,6 +39,8 @@ def getData():
 	query = 'SELECT FROM Listing WHERE latitude BETWEEN {} AND {} AND longitude BETWEEN {} AND {}'
 
 	records = client.command(query.format(lat1, lat2, lng1, lng2))
+	random.shuffle(records)
+	records =records[:100]
 
 	numListings = len(records)
 	print 'received ' + str(numListings) + ' records'
