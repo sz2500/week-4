@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from flask import request
 
 import json
 import time
@@ -16,10 +17,15 @@ def index():
 
 @app.route("/getData/")
 def getData():
-	
+	lat1=str(request.args.get("lat1"))
+        lat2=str(request.args.get("lat2"))
+        lng1=str(request.args.get("lng1"))
+        lng2=str(request.args.get("lng2"))
+        print "received coordinates:["+lat1+","+lat2+","+lng1+","+lng2+"]"
+        
 	client = pyorient.OrientDB("localhost", 2424)
-	session_id = client.connect("root", "password")
-	db_name = "property_test"
+	session_id = client.connect("root", "xiaozhuasha")
+	db_name = "soufun"
 	db_username = "admin"
 	db_password = "admin"
 
